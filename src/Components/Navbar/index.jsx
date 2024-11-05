@@ -12,7 +12,7 @@ const Navbar = () => {
       <ul className='flex items-center gap-3'>
         <li className='font-semibold text-lg'>
           <NavLink to='/'>
-            Shopi
+            ProtoStore
           </NavLink>
         </li>
         <li>
@@ -72,7 +72,7 @@ const Navbar = () => {
       </ul>
       <ul className='flex items-center gap-3'>
         <li className='text-black/60'>
-          teff@platzi.com
+          mostrodev@gmail.com
         </li>
         <li>
           <NavLink
