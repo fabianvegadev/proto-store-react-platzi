@@ -1,4 +1,4 @@
-import { useRoutes, HashRouter } from "react-router-dom";
+import { useRoutes, BrowserRouter } from "react-router-dom";
 import { ShoppingCartProvider } from "../../Context";
 import Home from "../Home";
 import MyAccount from "../MyAccount";
@@ -16,6 +16,8 @@ const AppRoutes = () => {
 		{ path: "/my-account", element: <MyAccount /> },
 		{ path: "/my-order", element: <MyOrder /> },
 		{ path: "/my-orders", element: <MyOrders /> },
+		{ path: "/my-orders/last", element: <MyOrder /> },
+		{ path: "/my-orders/:id", element: <MyOrder /> },
 		{ path: "/sign-in", element: <SignIn /> },
 		{ path: "/*", element: <NotFound /> },
 	]);
@@ -26,11 +28,11 @@ const AppRoutes = () => {
 const App = () => {
 	return (
 		<ShoppingCartProvider>
-			<HashRouter>
+			<BrowserRouter>
 				<AppRoutes />
 				<Navbar />
 				<CheckoutSideMenu />
-			</HashRouter>
+			</BrowserRouter>
 		</ShoppingCartProvider>
 	);
 };
