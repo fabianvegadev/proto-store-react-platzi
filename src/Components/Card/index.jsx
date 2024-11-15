@@ -1,9 +1,16 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { PlusIcon, CheckIcon } from "@heroicons/react/24/solid";
 import { ShoppingCartContext } from "../../Context";
+import { CheckMessage } from "../CheckMessage";
 
 const Card = (data) => {
 	const context = useContext(ShoppingCartContext);
+	const [message, setMessage] = useState("");
+
+	const showMessage = () => {
+		setMessage("Añadido");
+		setTimeout(() => setMessage(""), 1000);
+	};
 
 	const showProduct = (productDetail) => {
 		context.openProductDetail();
@@ -13,8 +20,8 @@ const Card = (data) => {
 	const addProductsToCart = (event, productData) => {
 		event.stopPropagation();
 		context.setCartProducts([...context.cartProducts, productData]);
-		context.openCheckoutSideMenu();
 		context.closeProductDetail();
+		showMessage();
 	};
 
 	const renderIcon = (id) => {
@@ -54,6 +61,7 @@ const Card = (data) => {
 					alt={data.data.title}
 				/>
 				{renderIcon(data.data.id)}
+				{message && <CheckMessage>{message}</CheckMessage>}
 			</figure>
 			<p className="flex justify-between">
 				<span className="text-sm font-light">{data.data.title}</span>

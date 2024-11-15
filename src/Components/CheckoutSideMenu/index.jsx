@@ -35,11 +35,11 @@ const CheckoutSideMenu = () => {
 				context.isCheckoutSideMenuOpen ? "flex" : "hidden"
 			} checkout-side-menu flex-col fixed right-0 border border-black rounded-lg bg-white`}
 		>
-			<div className="flex justify-between items-center p-6 sticky top-0 bg-white">
+			<div className="flex justify-between items-center p-6 sticky top-0 rounded-lg bg-white">
 				<h2 className="font-medium text-xl">My Order</h2>
 				<div>
 					<XMarkIcon
-						className="h-6 w-6 text-black cursor-pointer"
+						className="h-6 w-6 text-black cursor-pointer absolute top-4 right-4"
 						onClick={() => context.closeCheckoutSideMenu()}
 					></XMarkIcon>
 				</div>

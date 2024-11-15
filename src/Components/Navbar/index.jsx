@@ -88,7 +88,7 @@ const Navbar = () => {
 					</NavLink>
 				</li>
 				<li
-					className="flex items-center"
+					className="flex items-center cursor-pointer"
 					onClick={() => context.openCheckoutSideMenu()}
 				>
 					<ShoppingBagIcon className="h-6 w-6 text-black"></ShoppingBagIcon>
