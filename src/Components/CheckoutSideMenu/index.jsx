@@ -35,7 +35,7 @@ const CheckoutSideMenu = () => {
 				context.isCheckoutSideMenuOpen ? "flex" : "hidden"
 			} checkout-side-menu flex-col fixed right-0 border border-black rounded-lg bg-white`}
 		>
-			<div className="flex justify-between items-center p-6">
+			<div className="flex justify-between items-center p-6 sticky top-0 bg-white">
 				<h2 className="font-medium text-xl">My Order</h2>
 				<div>
 					<XMarkIcon
