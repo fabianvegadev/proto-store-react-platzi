@@ -9,11 +9,15 @@ function Home() {
 
 	const renderView = () => {
 		if (context.filteredItems?.length > 0) {
-			return context.filteredItems?.map((item) => (
-				<Card key={item.id} data={item} />
-			));
+			return (
+				<div className="grid gap-4 grid-cols-3 place-items-center justify-center w-full max-w-screen-lg">
+					{context.filteredItems?.map((item) => (
+						<Card key={item.id} data={item} />
+					))}
+				</div>
+			);
 		} else {
-			return <div>We don't have anything 🥲</div>;
+			return <div className="mt-8">We don't have anything 🥲</div>;
 		}
 	};
 	return (
@@ -27,9 +31,7 @@ function Home() {
 				className="rounded-lg border border-black w-80 p-4 mb-4"
 				onChange={(event) => context.setSearchByTitle(event.target.value)}
 			/>
-			<div className="grid gap-4 grid-cols-4 w-full max-w-screen-lg">
-				{renderView()}
-			</div>
+			{renderView()}
 			<ProductDetail />
 		</Layout>
 	);
