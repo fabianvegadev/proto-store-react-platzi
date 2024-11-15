@@ -84,7 +84,7 @@ const Navbar = () => {
 						to="/sing-in"
 						className={({ isActive }) => (isActive ? activeStyle : undefined)}
 					>
-						Sign In
+						Sign I
 					</NavLink>
 				</li>
 				<li
