@@ -38,7 +38,6 @@ const SignIn = () => {
 		// Create account
 		const stringifiedAccount = JSON.stringify(data);
 		localStorage.setItem("account", stringifiedAccount);
-		console.log(data);
 		context.setAccount(data);
 		// Sign in
 		handleSignIn();

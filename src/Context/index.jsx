@@ -42,7 +42,7 @@ export const ShoppingCartProvider = ({ children }) => {
 	// Checkout Side Menu - Open/Close
 	const [isCheckoutSideMenuOpen, setIsCheckoutSideMenuOpen] = useState(false);
 	const openCheckout = () => setIsCheckoutSideMenuOpen(true);
-	const closeCheckoutSideMenu = () => setIsCheckoutSideMenuOpen(false);
+	const closeCheckout = () => setIsCheckoutSideMenuOpen(false);
 
 	// Product Detail - Show product
 	const [productToShow, setProductToShow] = useState({});
@@ -131,7 +131,7 @@ export const ShoppingCartProvider = ({ children }) => {
 				setCartProducts,
 				isCheckoutSideMenuOpen,
 				openCheckout,
-				closeCheckoutSideMenu,
+				closeCheckout,
 				order,
 				setOrder,
 				items,

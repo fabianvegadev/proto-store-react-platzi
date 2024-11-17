@@ -13,8 +13,8 @@ const Card = (data) => {
 	};
 
 	const showProduct = (productDetail) => {
+		context.closeCheckout();
 		context.openProductDetail();
-		context.closeCheckoutSideMenu();
 		context.setProductToShow(productDetail);
 	};
 
@@ -22,6 +22,7 @@ const Card = (data) => {
 		event.stopPropagation();
 		context.setCartProducts([...context.cartProducts, productData]);
 		context.closeProductDetail();
+		context.openCheckout();
 		showMessage();
 	};
 
@@ -64,8 +65,10 @@ const Card = (data) => {
 				{renderIcon(data.data.id)}
 				{message && <CheckMessage>{message}</CheckMessage>}
 			</figure>
-			<p className="flex justify-between">
-				<span className="text-sm font-light">{data.data.title}</span>
+			<p className="flex justify-between items-center">
+				<span className="text-sm font-light max-h-10 overflow-y-hidden ">
+					{data.data.title}
+				</span>
 				<span className="text-lg font-medium">${data.data.price}</span>
 			</p>
 		</div>

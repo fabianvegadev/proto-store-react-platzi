@@ -1,6 +1,7 @@
 # Proto Store
 
-**Estado:** En desarrollo 🛠️  
+**Estado desktop:** Completamente funcional, cumpliendo todos los requisitos establecidos por el cliente según el laboratorio de Platzi.
+**Estado mobile:** En desarrollo 🛠️  
 **Curso:** Curso de React.js con Vite.js y TailwindCSS (Platzi)
 
 ## Descripción

@@ -69,7 +69,7 @@ const Navbar = () => {
 						to="/sign-in"
 						className={({ isActive }) => (isActive ? activeStyle : undefined)}
 					>
-						Sign out
+						Sign in
 					</NavLink>
 				</li>
 			);

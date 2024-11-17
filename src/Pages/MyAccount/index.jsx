@@ -1,9 +1,115 @@
+import { useContext, useState, useRef } from "react";
+import { Link } from "react-router-dom";
+
+import { ShoppingCartContext } from "../../Context";
 import { Layout } from "../../Components/Layout";
 
 function MyAccount() {
+	const context = useContext(ShoppingCartContext);
+	const [view, setView] = useState("user-info");
+	const account = localStorage.getItem("account");
+	const parsedAccount = JSON.parse(account);
+	const form = useRef(null);
+
+	const editAccount = () => {
+		const formData = new FormData(form.current);
+		const data = {
+			name: formData.get("name"),
+			email: formData.get("email"),
+			password: formData.get("password"),
+		};
+		// Update account
+		const stringifiedAccount = JSON.stringify(data);
+		localStorage.setItem("account", stringifiedAccount);
+		context.setAccount(data);
+		setView("user-info");
+	};
+
+	const renderUserInfo = () => {
+		return (
+			<div className="flex flex-col gap-4 w-80">
+				<div className="flex items-end gap-1">
+					<p className="font-light text-sm">Your name:</p>
+					<p> {parsedAccount?.name}</p>
+				</div>
+				<div className="flex items-end gap-1">
+					<p className="font-light text-sm">Your email:</p>
+					<p>{parsedAccount?.email}</p>
+				</div>
+				<button
+					className="border border-black rounded-lg py-3 w-80 mt-4"
+					onClick={() => setView("edit-user-info")}
+				>
+					Edit
+				</button>
+			</div>
+		);
+	};
+
+	const renderEditUserInfo = () => {
+		return (
+			<form ref={form} className="flex flex-col gap-4 w-80">
+				<div className="flex flex-col gap-1">
+					<label htmlFor="name" className="font-light text-sm">
+						Your name
+					</label>
+					<input
+						type="text"
+						id="name"
+						name="name"
+						defaultValue={parsedAccount?.name}
+						placeholder="Peter Parker"
+						className="rounded-lg border border-black placeholder:font-light placeholder:text-sm
+						placeholder:text-black/60 focus:outline-none py-2 px-4"
+					/>
+				</div>
+				<div className="flex flex-col gap-1">
+					<label htmlFor="email" className="font-light text-sm">
+						Your email
+					</label>
+					<input
+						type="text"
+						id="email"
+						name="email"
+						defaultValue={parsedAccount?.email}
+						placeholder="spiderman@ejemplo.com"
+						className="rounded-lg border border-black placeholder:font-light placeholder:text-sm
+						placeholder:text-black/60 focus:outline-none py-2 px-4"
+					/>
+				</div>
+				<div className="flex flex-col gap-1">
+					<label htmlFor="password" className="font-light text-sm">
+						Your password
+					</label>
+					<input
+						type="text"
+						id="password"
+						name="password"
+						defaultValue={parsedAccount?.password}
+						placeholder="*******"
+						className="rounded-lg border border-black placeholder:font-light placeholder:text-sm
+						placeholder:text-black/60 focus:outline-none py-2 px-4"
+					/>
+				</div>
+				<Link to="/my-account">
+					<button
+						className="bg-black text-white w-full rounded-lg py-3"
+						onClick={() => editAccount()}
+					>
+						Save
+					</button>
+				</Link>
+			</form>
+		);
+	};
+
+	const renderView = () =>
+		view === "edit-user-info" ? renderEditUserInfo() : renderUserInfo();
+
 	return (
 		<Layout>
-			<h1 className="font-medium text-xl">My Account</h1>
+			<h1 className="font-medium text-xl text-center mb-6 w-80">My Account</h1>
+			{renderView()}
 		</Layout>
 	);
 }
