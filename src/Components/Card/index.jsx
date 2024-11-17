@@ -14,6 +14,7 @@ const Card = (data) => {
 
 	const showProduct = (productDetail) => {
 		context.openProductDetail();
+		context.closeCheckoutSideMenu();
 		context.setProductToShow(productDetail);
 	};
 

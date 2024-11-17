@@ -25,7 +25,8 @@ export const initializeLocalStorage = () => {
 
 export const ShoppingCartProvider = ({ children }) => {
 	// My account
-	const [account, setAcount] = useState({});
+	const [account, setAccount] = useState({});
+	console.log(account);
 
 	// Sign out
 	const [signOut, setSignOut] = useState(false);
@@ -40,7 +41,7 @@ export const ShoppingCartProvider = ({ children }) => {
 
 	// Checkout Side Menu - Open/Close
 	const [isCheckoutSideMenuOpen, setIsCheckoutSideMenuOpen] = useState(false);
-	const openCheckoutSideMenu = () => setIsCheckoutSideMenuOpen(true);
+	const openCheckout = () => setIsCheckoutSideMenuOpen(true);
 	const closeCheckoutSideMenu = () => setIsCheckoutSideMenuOpen(false);
 
 	// Product Detail - Show product
@@ -129,7 +130,7 @@ export const ShoppingCartProvider = ({ children }) => {
 				cartProducts,
 				setCartProducts,
 				isCheckoutSideMenuOpen,
-				openCheckoutSideMenu,
+				openCheckout,
 				closeCheckoutSideMenu,
 				order,
 				setOrder,
@@ -142,7 +143,7 @@ export const ShoppingCartProvider = ({ children }) => {
 				searchByCategory,
 				setSearchByCategory,
 				account,
-				setAcount,
+				setAccount,
 				signOut,
 				setSignOut,
 			}}
