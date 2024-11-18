@@ -66,6 +66,10 @@ export const ShoppingCartProvider = ({ children }) => {
 	const [items, setItems] = useState(null);
 	const [filteredItems, setFilteredItems] = useState(null);
 
+	// state Loading and Error
+	const [loading, setLoading] = useState(true);
+	const [error, setError] = useState(false);
+
 	// Get products by title
 	const [searchByTitle, setSearchByTitle] = useState(null);
 
@@ -78,11 +82,27 @@ export const ShoppingCartProvider = ({ children }) => {
 	};
 
 	useEffect(() => {
-		fetch("https://fakestoreapi.com/products")
-			.then((response) => response.json())
-			.then((data) => setItems(data));
-	}, []);
+		const fetchData = async () => {
+			setLoading(true);
+			try {
+				const response = await fetch("https://fakestoreapi.com/products");
+				if (!response.ok) {
+					throw new Error(`HTTP error! Status: ${response.status}`);
+				}
+				const data = await response.json();
+				setItems(data);
+				setLoading(false);
+				setError(false);
+			} catch (e) {
+				setLoading(false);
+				setError(true);
+				console.error(e);
+			}
+		};
 
+		fetchData();
+	}, []);
+	console.log(error);
 	const filteredItemsByTitle = (items, searchByTitle) => {
 		return items?.filter((item) =>
 			item.title.toLowerCase().includes(searchByTitle.toLowerCase())
@@ -90,7 +110,6 @@ export const ShoppingCartProvider = ({ children }) => {
 	};
 
 	const filteredItemsByCategory = (items, searchByCategory) => {
-		setSearchByTitle(null);
 		return items?.filter(
 			(item) => item.category.toLowerCase() === searchByCategory.toLowerCase()
 		);
@@ -123,17 +142,19 @@ export const ShoppingCartProvider = ({ children }) => {
 					searchByCategory
 				)
 			);
-		if (searchByTitle && !searchByCategory)
+		else if (searchByTitle && !searchByCategory)
 			setFilteredItems(filterBy("BY_TITLE", items, searchByTitle, null));
-		if (searchByCategory && !searchByTitle)
+		else if (searchByCategory && !searchByTitle)
 			setFilteredItems(filterBy("BY_CATEGORY", items, null, searchByCategory));
-		if (!searchByCategory && !searchByTitle)
+		else if (!searchByCategory && !searchByTitle)
 			setFilteredItems(filterBy(null, items, null, null));
 	}, [items, searchByTitle, searchByCategory]);
 
 	return (
 		<ShoppingCartContext.Provider
 			value={{
+				loading,
+				error,
 				count,
 				setCount,
 				isNavbarSideMenuOpen,
