@@ -1,7 +1,8 @@
 # Proto Store
 
-**Estado desktop:** Completamente funcional, cumpliendo todos los requisitos establecidos por el cliente según el laboratorio de Platzi.
-**Estado mobile:** En desarrollo 🛠️  
+**Estado desktop:** Completamente funcional, cumpliendo todos los requisitos establecidos por el cliente según el laboratorio de Platzi.  
+**Estado mobile:** Completamente funcional, cumpliendo con el bunus del laboratorio de Platzi.
+
 **Curso:** Curso de React.js con Vite.js y TailwindCSS (Platzi)
 
 ## Descripción
@@ -12,7 +13,13 @@
 
 - **Explorar productos:** La tienda permite ver una lista de productos de la API, mostrando detalles como nombre, precio, descripción y categoría.
 - **Interfaz responsiva:** Utiliza TailwindCSS para asegurar que la aplicación se vea bien en cualquier dispositivo.
-- **Rendimiento optimizado:** Gracias al uso de Vite.js, la aplicación tiene un entorno de desarrollo rápido y un rendimiento optimizado en producción.
+- **Persistencia de datos:** Se emplea **Local Storage** para guardar el estado del carrito, las órdenes realizadas y la sesión del usuario.
+- **Sistema de autenticación:** Permite a los usuarios iniciar sesión y administrar su cuenta utilizando credenciales almacenadas en **Local Storage**.
+- **Filtrado avanzado:** Búsqueda por título y categorías para facilitar la navegación.
+- **Carrito de compras:** Posibilidad de agregar productos al carrito, editar cantidades y eliminar artículos.
+- **Gestión de órdenes:** Los usuarios pueden realizar checkout y consultar el historial de órdenes realizadas.
+- **Edición de cuenta:** Sección dedicada para que los usuarios actualicen su información personal.
+- **Manejo de estados de carga y error:** La aplicación proporciona retroalimentación visual durante la carga de datos o si ocurre algún error.
 
 ## Tecnologías utilizadas
 
@@ -27,11 +34,9 @@ Proto Store utiliza la API pública **Fake Store API** para obtener los datos de
 
 ## Próximas características
 
-- Funcionalidad de carrito de compras
-- Filtro de productos por categoría
-- Funcionalidad de búsqueda avanzada
-- Sistema de autenticación de usuarios
-- Pagos simulados
+- Implementación de pagos simulados.
+- Optimización adicional para dispositivos móviles.
+- Integración de notificaciones en tiempo real.
 
 #### Nota => Esta aplicación está en desarrollo. Algunas características y funcionalidades pueden estar sujetas a cambios o mejoras durante el progreso del proyecto.
 
