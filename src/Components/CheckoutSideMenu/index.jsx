@@ -1,13 +1,20 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { XMarkIcon } from "@heroicons/react/24/solid";
 import { ShoppingCartContext } from "../../Context";
 import { OrderCard } from "../../Components/OrderCard";
 import { totalPrice } from "../../utils";
+import { CheckMessage } from "../CheckMessage";
 import "./styles.css";
 
 const CheckoutSideMenu = () => {
 	const context = useContext(ShoppingCartContext);
+	const [message, setMessage] = useState("");
+
+	const showMessage = () => {
+		setMessage("First, you need to add products to the cart.");
+		setTimeout(() => setMessage(""), 2000);
+	};
 
 	const handleDelete = (id) => {
 		const filteredProducts = context.cartProducts.filter(
@@ -18,22 +25,25 @@ const CheckoutSideMenu = () => {
 
 	const handleCheckout = () => {
 		const orderToAdd = {
-			date: "11.11.24",
+			date: new Date().toLocaleDateString(),
 			products: context.cartProducts,
 			totalProducts: context.cartProducts.length,
 			totalPrice: totalPrice(context.cartProducts),
 		};
-
-		context.setOrder([...context.order, orderToAdd]);
-		context.setCartProducts([]);
-		context.closeCheckout();
+		if (context.cartProducts.length > 0) {
+			context.setOrder([...context.order, orderToAdd]);
+			context.setCartProducts([]);
+			context.closeCheckout();
+		} else {
+			showMessage();
+		}
 	};
 
 	return (
 		<aside
 			className={`${
 				context.isCheckoutSideMenuOpen ? "flex" : "hidden"
-			} checkout-side-menu flex-col fixed right-0 border border-black rounded-lg bg-white`}
+			} checkout-side-menu flex-col fixed right-0 z-20 border border-black rounded-lg bg-white`}
 		>
 			<div className="flex justify-between items-center p-6 sticky top-0 rounded-lg bg-white">
 				<h2 className="font-medium text-xl">My Order</h2>
@@ -55,6 +65,7 @@ const CheckoutSideMenu = () => {
 						handleDelete={handleDelete}
 					/>
 				))}
+				{message && <CheckMessage>{message}</CheckMessage>}
 			</div>
 			<div className="px-6">
 				<p className="flex justify-between items-center mb-2">

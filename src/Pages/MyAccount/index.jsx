@@ -29,11 +29,11 @@ function MyAccount() {
 		return (
 			<div className="flex flex-col gap-4 w-80">
 				<div className="flex items-end gap-1">
-					<p className="font-light text-sm">Your name:</p>
+					<p className="font-light text-sm">Name:</p>
 					<p> {parsedAccount?.name}</p>
 				</div>
 				<div className="flex items-end gap-1">
-					<p className="font-light text-sm">Your email:</p>
+					<p className="font-light text-sm">Email:</p>
 					<p>{parsedAccount?.email}</p>
 				</div>
 				<button

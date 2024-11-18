@@ -10,9 +10,9 @@ const ProductDetail = () => {
 		<aside
 			className={`${
 				context.isProductDetailOpen ? "flex" : "hidden"
-			} product-detail flex-col fixed right-0 overflow-y-scroll border border-black rounded-lg bg-white`}
+			} product-detail flex-col fixed z-20 right-0 overflow-y-scroll border border-black rounded-lg bg-white`}
 		>
-			<div className="flex justify-between items-center p-6 sticky top-0 bg-white">
+			<div className="flex justify-between items-center p-6 sticky -top-0.5 bg-white">
 				<h2 className="font-medium text-xl">Detail</h2>
 				<div>
 					<XMarkIcon

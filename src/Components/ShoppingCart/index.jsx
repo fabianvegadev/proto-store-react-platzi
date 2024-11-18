@@ -25,8 +25,9 @@ const ShoppingCart = () => {
 	const hasUserAcount = !noAccountInLocalState || !noAccountInLocalStorage;
 
 	const openCheckoutSideMenu = () => {
-		context.openCheckout();
 		context.closeProductDetail();
+		context.closeNavbar();
+		context.openCheckout();
 	};
 	return (
 		<div

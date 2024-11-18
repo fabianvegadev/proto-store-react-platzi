@@ -23,6 +23,7 @@ const SignIn = () => {
 	const handleSignIn = () => {
 		const stringifiedSignOut = JSON.stringify(false);
 		localStorage.setItem("sign-out", stringifiedSignOut);
+		context.closeNavbar();
 		context.setSignOut(false);
 		// Redirect
 		return <Navigate replace to={"/"} />;

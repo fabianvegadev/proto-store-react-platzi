@@ -26,13 +26,22 @@ export const initializeLocalStorage = () => {
 export const ShoppingCartProvider = ({ children }) => {
 	// My account
 	const [account, setAccount] = useState({});
-	console.log(account);
 
 	// Sign out
 	const [signOut, setSignOut] = useState(false);
 
 	// Shopping Cart - Increment quantity
 	const [count, setCount] = useState(0);
+
+	// User Side Menu - Open/close
+	const [isNavbarSideMenuOpen, setIsNavbarSideMenuOpen] = useState(false);
+
+	const openNavbar = () => {
+		setIsNavbarSideMenuOpen(!isNavbarSideMenuOpen);
+	};
+	const closeNavbar = () => {
+		setIsNavbarSideMenuOpen(false);
+	};
 
 	// Product Detail - Open/Close
 	const [isProductDetailOpen, setIsProductDetailOpen] = useState(false);
@@ -62,6 +71,11 @@ export const ShoppingCartProvider = ({ children }) => {
 
 	// Get products by category
 	const [searchByCategory, setSearchByCategory] = useState(null);
+
+	const handleCategory = (category) => {
+		closeNavbar();
+		setSearchByCategory(category);
+	};
 
 	useEffect(() => {
 		fetch("https://fakestoreapi.com/products")
@@ -122,6 +136,9 @@ export const ShoppingCartProvider = ({ children }) => {
 			value={{
 				count,
 				setCount,
+				isNavbarSideMenuOpen,
+				openNavbar,
+				closeNavbar,
 				openProductDetail,
 				closeProductDetail,
 				isProductDetailOpen,
@@ -142,6 +159,7 @@ export const ShoppingCartProvider = ({ children }) => {
 				setFilteredItems,
 				searchByCategory,
 				setSearchByCategory,
+				handleCategory,
 				account,
 				setAccount,
 				signOut,

@@ -14,6 +14,7 @@ const Card = (data) => {
 
 	const showProduct = (productDetail) => {
 		context.closeCheckout();
+		context.closeNavbar();
 		context.openProductDetail();
 		context.setProductToShow(productDetail);
 	};
@@ -22,7 +23,7 @@ const Card = (data) => {
 		event.stopPropagation();
 		context.setCartProducts([...context.cartProducts, productData]);
 		context.closeProductDetail();
-		context.openCheckout();
+		context.closeNavbar();
 		showMessage();
 	};
 

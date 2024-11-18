@@ -10,9 +10,6 @@ function MyOrder() {
 
 	const currentPath = window.location.hash;
 
-	console.log(currentPath);
-	console.log(context.order);
-
 	let index = currentPath.substring(currentPath.lastIndexOf("/") + 1);
 	if (index === "last") index = context.order?.length - 1;
 	return (
